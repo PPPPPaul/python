@@ -2,17 +2,26 @@ import requests
 import re
 import sys
 import urllib3
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) 
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
 #获取网址内容
-headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0'}
-r = requests.get(input('请输入网址>>>'))
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0'}
+r = requests.get("http://1001tvs.com/index-cn.html")
+r.encoding = 'utf-8'
 data = r.text
 #print(data)
+
+
 #利用正则查找所有连接
-link_list = re.findall(r"href\=\"((?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),#]|(?:%[0-9a-fA-F][0-9a-fA-F]))+)\"" ,data)
-print("1")
-print(link_list)
-for url in link_list:
+def find_link_list(url):
+    link_list = re.findall(r"href=\"[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]\"", url)
+    return link_list
+
+
+final_link_list = find_link_list(data)
+#print(find_link_list(data))
+
+for url in final_link_list:
     url = [url]
     length = len(url)
     url_result_success = []
