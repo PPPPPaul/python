@@ -51,8 +51,8 @@ def check_link_list(urls):
                     full_link_list.append(link)
                     pass
                 else:
-                    #print(url)
-                    #print(link)
+                    print(url)
+                    print(link)
                     if link.find("../") == -1:
                         link = url[0:url.rfind("/") + 1] + link
                         #print(link)
@@ -69,8 +69,8 @@ def check_link_list(urls):
     return full_link_list
 
 
-url = ["https://www.1001tvs.com/index-cn.html"]
-i = 5
+url = ["https://taobao.swiftlink.mobi/index.html"]
+i = 3
 
 while i > 0:
 
@@ -81,9 +81,10 @@ while i > 0:
 
 num = 0
 for list in url:
-    print(list)
+    #print(list)
     num += 1
 print(num)
+
 
 '''
 for url in final_link_list:
